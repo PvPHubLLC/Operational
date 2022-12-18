@@ -26,12 +26,16 @@ repositories {
     maven {
         url = uri("https://jitpack.io")
     }
+    maven {
+        url = uri("https://repo.papermc.io/repository/maven-public/")
+    }
 }
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
     compileOnly("org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.1")
+    compileOnly("com.velocitypowered:velocity-api:3.1.2-SNAPSHOT")
 }
 
 tasks.test {
