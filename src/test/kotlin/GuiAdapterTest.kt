@@ -5,8 +5,8 @@ fun main() {
         listOf(
             "gui(5) {",
             "   button(paper) {" +
-            "        amount = 4",
-            "        slot = 2",
+            "       amount = 4",
+            "       slot = 2",
             "   }",
             "   button(diamond_sword) {",
             "       amount = 64",

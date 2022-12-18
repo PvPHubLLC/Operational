@@ -35,7 +35,7 @@ class OperationalScript {
     }
 
     fun <T> variable(name: String) : OperationalVariable<T>? {
-        val value = globals["global::${name}"] ?: return null
+        val value = globals["gl::${name}"] ?: return null
         if (value is OperationalVariable<*>)
             return try {
                 (value as OperationalVariable<T>)
@@ -46,7 +46,7 @@ class OperationalScript {
     }
 
     fun <T: Event> fireEvent(event: T, clazz: Class<T>) {
-        val value = globals["event::${clazz.name}"] ?: return
+        val value = globals["ev::${clazz.name}"] ?: return
         if (value is OperationalListener) {
             try {
                 value.run(event)

@@ -5,4 +5,6 @@ annotation class OpFunction(
     val regexes: Array<String> = []
 )
 
-interface OpExtension
+interface OpExtension {
+    fun environment() = OpExtensionEnvironment.any()
+}

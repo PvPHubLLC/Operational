@@ -18,16 +18,20 @@ class GuiAdapter : OperationalAdapter(
 //        }
         val sublist = lines.toList().subList(1, lines.size - 1).toMutableList()
         // We can expect that every single block in here is another block
-        var stringBuilder = ""
-        while (sublist.isNotEmpty()) {
-            stringBuilder += "${if (stringBuilder.isEmpty()) "" else "\n"}${sublist[0].removeInitialWhitespace()}"
-            sublist.removeAt(0)
-            if (GuiButtonAdapter.regex.matches(stringBuilder)) {
-                buttons += GuiButtonAdapter().parse(stringBuilder.split("\n"))
-                stringBuilder = ""
-            }
+        forEveryLine(sublist, { GuiButtonAdapter.regex.matches(it) }) {
+            buttons += GuiButtonAdapter().parse(it)
         }
         return this
     }
-
+}
+fun forEveryLine(list: MutableList<String>, match: (String) -> Boolean, onMatch: (List<String>) -> Unit) {
+    var stringBuilder = ""
+    while (list.isNotEmpty()) {
+        stringBuilder += "${if (stringBuilder.isEmpty()) "" else "\n"}${list[0].removeInitialWhitespace()}"
+        list.removeAt(0)
+        if (match(stringBuilder)) {
+            onMatch(stringBuilder.split("\n"))
+            stringBuilder = ""
+        }
+    }
 }
