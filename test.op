@@ -1,0 +1,23 @@
+on(joinEvent) {
+    send "Hello, %player%"
+}
+
+command("test") {
+    aliases = ["test1"]
+    runs {
+        send "This is a test for Operational commands"
+    }
+}
+
+command("toggle-something") {
+    playerOnly = true
+    runs {
+        var current = [varName.%player%]
+        var copyCurrent = current
+
+        if (current isset) {
+            [varName.%player%] = !current
+        } else [varName.%player%] = true
+        send "Toggled to %[varName.%player%]%"
+    }
+}
