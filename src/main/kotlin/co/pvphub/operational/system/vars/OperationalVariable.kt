@@ -4,5 +4,6 @@ class OperationalVariable<T>(val name: String, var value: T? = null) {
 
     companion object {
         val regex = "\\[(\\w|\\d|\\.|::)+]|(\\w|\\d|\\.|::)+".toRegex()
+        val assignment = "(${regex})\\s?=\\s.+".toRegex()
     }
 }

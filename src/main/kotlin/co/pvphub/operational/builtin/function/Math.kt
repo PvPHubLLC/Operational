@@ -1,11 +1,12 @@
 package co.pvphub.operational.builtin.function
 
+import co.pvphub.operational.api.OpExtension
 import co.pvphub.operational.api.OpFunction
 import co.pvphub.operational.system.OperationalContext
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-class Math {
+class Math : OpExtension {
 
     @OpFunction(regexes = ["\\d+\\s?\\+\\s?\\d+"])
     fun add(context: OperationalContext, first: Double, second: Double) : Double = first + second

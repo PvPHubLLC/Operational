@@ -47,9 +47,9 @@ class OperationalScript {
 
     fun <T: Event> fireEvent(event: T, clazz: Class<T>) {
         val value = globals["event::${clazz.name}"] ?: return
-        if (value is OperationalListener<*>) {
+        if (value is OperationalListener) {
             try {
-                (value as OperationalListener<T>).run(event)
+                value.run(event)
             } catch (e: ClassCastException) {
                 e.printStackTrace()
             }

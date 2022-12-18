@@ -1,0 +1,16 @@
+use "./path/otherfile.op"
+
+command("nick") {
+    permission = "operational.nickname"
+    aliases += "nickname"
+    playerOnly = true
+    runs {
+        if (args > 0) {
+            [operational.nickname.%player%] = args[0]
+        } else send "&cYou need to provide a new nickname."
+    }
+}
+
+on(playerJoin) {
+    send "&7Welcome back, %player%!"
+}
